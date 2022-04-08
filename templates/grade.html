@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+
+<title>BlockeGrade</title>
+{% if name %}
+<h3>ID: {{ name }}</h3>
+<h4>{{ course }}-{{ year }}</h4>
+<h5>Please assign grade to the students below</h5>
+{% else %}
+<h3>Hello, World!</h3>
+{% endif %}
+
+<body class="white">
+
+    <form action="/" method="post">
+
+        {%  for i in range(1, number + 1) %}
+        <p>
+            Student-{{ "%02d" %i }}: &emsp;
+            <label>
+                <input type="radio" name="roll_no{{ i }}" value="A">
+                <span>A &emsp; </span>
+            </label>
+            <label>
+                <input type="radio" name="roll_no{{ i }}" value="B">
+                <span>B &emsp; </span>
+            </label>
+            <label>
+                <input type="radio" name="roll_no{{ i }}" value="C">
+                <span>C &emsp; </span>
+            </label>
+            <label>
+                <input type="radio" name="roll_no{{ i }}" value="D">
+                <span>D &emsp; </span>
+            </label>
+            <label>
+                <input type="radio" name="roll_no{{ i }}" value="F">
+                <span>F &emsp; </span>
+            </label>
+            <label>
+                <input type="radio" name="roll_no{{ i }}" value="NA" checked="checked">
+                <span>Not yet graded</span>
+            </label>
+            <br />
+            <br />
+        </p>
+        {% endfor %}
+        <br />
+        <br />
+        <br />
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+</body>

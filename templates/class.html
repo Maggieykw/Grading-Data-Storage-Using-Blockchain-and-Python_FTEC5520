@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+
+<title>BlockGrade</title>
+{% if name %}
+<h3>ID: {{ name }}</h3>
+<h4>Please enter the details of the class</h4>
+{% endif %}
+
+<body class="white">
+    <div class="row">
+        <form class="col s12" id="form" name="form" action="/" method="post">
+            <div class="row">
+                {% if not name %}
+                <div class="input-field col s12">
+                    <label for="name">Your ID</label>
+                    <input type="text" id="name" name="name" value="">
+                </div>
+                {% endif %}
+                <div class="input-field col s12">
+                    <label for="number">Total Number of Students</label>
+                    <input type="number" id="number" name="number" value="50">
+                </div>
+                <div class="input-field col s12">
+                    <select id="course" name="course">
+                        <option value="FTEC5510">FTEC5510</option>
+                        <option value="FTEC5520">FTEC5520</option>
+                        <option value="FTEC5530">FTEC5530</option>
+                        <option value="FTEC5540">FTEC5540</option>
+                        <option value="FTEC5550">FTEC5550</option>
+                        <option value="FTEC5560">FTEC5560</option>
+                        <option value="FTEC5570">FTEC5570</option>
+                        <option value="FTEC5580">FTEC5580</option>
+                        <option value="FTEC5590">FTEC5590</option>
+                        <option value="FTEC5910">FTEC5910</option>
+                        <option value="FTEC5920">FTEC5920</option>
+                        <option value="FINA6122">FINA6122</option>
+                    </select>
+                    <label for="course">Course Code</label>
+                </div>
+                <div class="input-field col s12">
+                    <label for="year">Term</label>
+                    <input type="text" id="year" name="year" value="Term 1">
+                </div>
+                <div class="input-field col s12">
+                    <label for="date">Record Date</label>
+                    <input class="datepicker" type="text" id="date" name="date" value="{{ date }}">
+                </div>
+                <button class="btn waves-effect waves-light" type="submit" name="action">Next
+                    <i class="material-icons right">send</i>
+                </button>
+            </div>
+
+        </form>
+    </div>
+
+    <script type="text/javascript">
+    var form = document.getElementById("form") || null;
+    if(form) {
+        form.action = window.location.pathname;
+    }
+    var dpelem = document.querySelector('.datepicker');
+    var dpinstance = M.Datepicker.init(dpelem, {format:'yyyy-mm-dd'});
+    var fselem = document.querySelector('select');
+    var fsinstance = M.FormSelect.init(fselem, {});
+    </script>
+</body>

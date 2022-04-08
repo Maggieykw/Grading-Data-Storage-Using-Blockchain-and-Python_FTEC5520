@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+
+<title>BlockGrade</title>
+
+<body class="white">
+    <h3>ID: {{ name }}</h3>
+    <h4>Below is the grade data</h4>
+    <br />
+    <h6>Record Date: &emsp; {{ date }}</h6>
+    <br />
+    <br />
+    <table>
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%  for i in range(1, number + 1) %}
+            <tr>
+                <td>{{ course }}-{{ year }}-{{ "%02d" %i }}</td>
+                <td>{{ status[i - 1] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br />
+
+    <button class="btn waves-effect waves-light" type="button" id="button" name="button">Go Back</button>
+    <script type="text/javascript">
+    function goBack() {
+        window.open("/", "_self");
+    }
+    var button = document.getElementById("button");
+    button.addEventListener("click", goBack);
+    </script>
+
+</body>
